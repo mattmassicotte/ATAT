@@ -100,9 +100,10 @@ struct PostTests {
 		
 		#expect(images.images.count == 1)
 		let image = try #require(images.images.first)
+		let imageAspectRatio = try #require(image.aspectRatio)
 		
-		#expect(image.aspectRatio.height == 1500)
-		#expect(image.aspectRatio.width == 1999)
+		#expect(imageAspectRatio.height == 1500)
+		#expect(imageAspectRatio.width == 1999)
 		#expect(image.image.mimeType == "image/jpeg")
 		#expect(image.image.size == 922545)
 		
@@ -110,9 +111,10 @@ struct PostTests {
 		
 		#expect(imagesView.images.count == 1)
 		let imageView = try #require(imagesView.images.first)
-
-		#expect(imageView.aspectRatio.height == 1500)
-		#expect(imageView.aspectRatio.width == 1999)
+		let imageViewAspectRatio = try #require(imageView.aspectRatio)
+		
+		#expect(imageViewAspectRatio.height == 1500)
+		#expect(imageViewAspectRatio.width == 1999)
 		#expect(imageView.fullsize == "https://cdn.bsky.app/img/feed_fullsize/plain/did:plc:z7ja7uhcr5is6uqmnsjyn3k7/bafkreicjr5ezdgwv6z4zcxv2egqjmaox6ocplsrhvubmmfqyuh6dybhfma@jpeg")
 	}
 	
@@ -176,10 +178,11 @@ struct PostTests {
 		#expect(embedVideo.video.mimeType == "video/mp4")
 		
 		guard case let .embedVideoView(embedVideoView) = post.embed else { fatalError() }
+		let videoAspectRatio = try #require(embedVideoView.aspectRatio)
 		
 		#expect(embedVideoView.playlist == "https://video.bsky.app/watch/did%3Aplc%3Al7mosai5i2u562b5qbosw6c7/bafkreic3uqlah5pnqzq4tx2r5cg6kyj2uziq4jn4uatuwdhvl33sx2qkgm/playlist.m3u8")
 		#expect(embedVideoView.thumbnail == "https://video.bsky.app/watch/did%3Aplc%3Al7mosai5i2u562b5qbosw6c7/bafkreic3uqlah5pnqzq4tx2r5cg6kyj2uziq4jn4uatuwdhvl33sx2qkgm/thumbnail.jpg")
-		#expect(embedVideoView.aspectRatio.height == 1920)
-		#expect(embedVideoView.aspectRatio.width == 1920)
+		#expect(videoAspectRatio.height == 1920)
+		#expect(videoAspectRatio.width == 1920)
 	}
 }
