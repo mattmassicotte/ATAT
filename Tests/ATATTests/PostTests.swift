@@ -185,4 +185,38 @@ struct PostTests {
 		#expect(videoAspectRatio.height == 1920)
 		#expect(videoAspectRatio.width == 1920)
 	}
+	
+	@Test func embedViewImageWithoutAspectRatio() throws {
+		let json = """
+{"thumb":"https://bsky.com/thumbnail.jpg","fullsize":"https://bsky.com/img/feed_fullsize/plain/did:plc:z7ja/bafk@jpeg","alt":""}
+"""
+
+		let embed = try ATJSONDecoder()
+			.decode(
+				Bsky.Embed.Images.ViewImage.self,
+				from: Data(json.utf8)
+			)
+		
+		#expect(embed.thumb == "https://bsky.com/thumbnail.jpg")
+		#expect(embed.fullsize == "https://bsky.com/img/feed_fullsize/plain/did:plc:z7ja/bafk@jpeg")
+		#expect(embed.alt == "")
+		#expect(embed.aspectRatio == nil)
+	}
+	
+	@Test func embedViewVideoWithoutAspectRatio() throws {
+		let json = """
+{"$type":"app.bsky.embed.video#view","cid":"123abcde890","playlist":"https://example-url.bsky.com/playlist.m3u8","thumbnail":"https://example-url.bsky.com/thumbnail.jpg"}
+"""
+
+		let embed = try ATJSONDecoder()
+			.decode(
+				Bsky.Embed.Video.View.self,
+				from: Data(json.utf8)
+			)
+		
+		#expect(embed.cid == "123abcde890")
+		#expect(embed.playlist == "https://example-url.bsky.com/playlist.m3u8")
+		#expect(embed.thumbnail == "https://example-url.bsky.com/thumbnail.jpg")
+		#expect(embed.aspectRatio == nil)
+	}
 }
