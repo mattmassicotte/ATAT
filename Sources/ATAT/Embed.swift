@@ -87,7 +87,7 @@ extension Bsky.Embed {
 	public struct Images: Decodable, Hashable, Sendable {
 		public struct Image: Decodable, Hashable, Sendable {
 			public let alt: String
-			public let aspectRatio: AspectRatio
+			public let aspectRatio: AspectRatio?
 			public let image: Bsky.Blob
 		}
 		
@@ -98,7 +98,7 @@ extension Bsky.Embed {
 extension Bsky.Embed.Images {
 	public struct ViewImage: Decodable, Hashable, Sendable {
 		public let alt: String
-		public let aspectRatio: Bsky.Embed.AspectRatio
+		public let aspectRatio: Bsky.Embed.AspectRatio?
 		public let fullsize: String
 		public let thumb: String
 	}
@@ -110,7 +110,7 @@ extension Bsky.Embed.Images {
 
 extension Bsky.Embed {
 	public struct Video: Decodable, Hashable, Sendable {
-		public let aspectRatio: Bsky.Embed.AspectRatio
+		public let aspectRatio: Bsky.Embed.AspectRatio?
 		public let video: Bsky.Blob
 	}
 }
@@ -119,7 +119,7 @@ extension Bsky.Embed.Video {
 	public struct View: Decodable, Hashable, Sendable {
 		public let cid: ATProtoCID
 		public let playlist: String
-		public let thumbnail: String
-		public let aspectRatio: Bsky.Embed.AspectRatio
+		public let thumbnail: String?
+		public let aspectRatio: Bsky.Embed.AspectRatio?
 	}
 }
