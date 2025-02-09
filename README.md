@@ -39,8 +39,8 @@ I prefer indentation with tabs for improved accessibility. But, I'd rather you u
 
 By participating in this project you agree to abide by the [Contributor Code of Conduct](CODE_OF_CONDUCT.md).
 
-[build status]: https://github.com/mattmassicotte/ATResolve/actions
-[build status badge]: https://github.com/mattmassicotte/ATResolve/workflows/CI/badge.svg
+[build status]: https://github.com/mattmassicotte/ATAT/actions
+[build status badge]: https://github.com/mattmassicotte/ATAT/workflows/CI/badge.svg
 [matrix]: https://matrix.to/#/%23chimehq%3Amatrix.org
 [matrix badge]: https://img.shields.io/matrix/chimehq%3Amatrix.org?label=Matrix
 [discord]: https://discord.gg/esFpX6sErJ
