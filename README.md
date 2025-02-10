@@ -28,7 +28,7 @@ import ATAT
 // getFeed call
 let data = "..."
 
-let response = ATJSONDecoder().decode(Bsky.Feed.GetFeedResponse.self, from: data)
+let response = JSONDecoder.atJSONDecoder.decode(Bsky.Feed.GetFeedResponse.self, from: data)
 ```
 
 ## Contributing and Collaboration
