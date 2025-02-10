@@ -8,7 +8,9 @@
 # ATAT
 Little library for working with the AT Protocol
 
-The AT Protocol is large and complex. It mostly just contains currency types useful for decoding some simple responses. It is highly-incomplete and was created really just so I could mess around and learn. If you are looking for something full-featured, please check out [ATProtoKit](https://github.com/MasterJ93/ATProtoKit).
+The AT Protocol is large and complex. This library mostly just contains currency types useful for decoding some simple responses. It is highly-incomplete and was created really just so I could mess around and learn.
+
+If you are looking for something full-featured, please check out [ATProtoKit](https://github.com/MasterJ93/ATProtoKit).
 
 ## Integration
 
