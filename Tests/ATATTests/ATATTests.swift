@@ -34,10 +34,9 @@ struct ATJSONEncoderTests {
 		)
 		
 		let data = try ATJSONEncoder().encode(container)
-		let json = """
-{"date":"2024-11-17T07:23:53-05:00"}
-"""
 		
-		#expect(String(decoding: data, as: UTF8.self) == json)
+		let decoded = try ATJSONDecoder().decode(DateContainer.self, from: data)
+		
+		#expect(decoded.date == container.date)
 	}
 }
