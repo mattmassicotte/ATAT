@@ -3,7 +3,7 @@ import Testing
 
 import ATAT
 
-struct DateContainer: Decodable {
+struct DateContainer: Codable {
 	let date: Date
 }
 
@@ -27,4 +27,17 @@ struct ATJSONDecoderTests {
 	}
 }
 
-
+struct ATJSONEncoderTests {
+	@Test func offsetDate() throws {
+		let container = DateContainer(
+			date: Date(timeIntervalSince1970: 1731846233)
+		)
+		
+		let data = try ATJSONEncoder().encode(container)
+		let json = """
+{"date":"2024-11-17T07:23:53-05:00"}
+"""
+		
+		#expect(String(decoding: data, as: UTF8.self) == json)
+	}
+}

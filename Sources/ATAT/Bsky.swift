@@ -12,8 +12,16 @@ public struct Bsky {
 	
 	public struct Actor {
 	}
+	
+	public struct Repo {
+	}
+	
+	public enum NSID: String, Codable, Hashable, Sendable {
+		case feedLike = "app.bsky.feed.like"
+	}
 }
 
 public typealias ATProtoDID = String
 public typealias ATProtoURI = String
 public typealias ATProtoCID = String
+

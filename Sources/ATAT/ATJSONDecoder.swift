@@ -39,3 +39,28 @@ public struct ATJSONDecoder: Sendable {
 		try wrappedDecoder.decode(type, from: data)
 	}
 }
+
+public final class ATJSONEncoder: JSONEncoder, @unchecked Sendable {
+	private let encoder = JSONEncoder()
+	private let iso8061DecimalFormatter = DateFormatter()
+	
+	public override init() {
+		super.init()
+		
+		iso8061DecimalFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
+		
+		encoder.dateEncodingStrategy = .custom(encodeDate)
+	}
+	
+	private func encodeDate(_ date: Date, _ encoder: any Encoder) throws -> Void {
+		let string = iso8061DecimalFormatter.string(from: date)
+		
+		var container = encoder.singleValueContainer()
+		
+		try container.encode(string)
+	}
+	
+	override public func encode<T>(_ value: T) throws -> Data where T : Encodable {
+		try encoder.encode(value)
+	}
+}

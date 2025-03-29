@@ -1,9 +1,10 @@
-public enum GenericRecord: Decodable, Hashable, Sendable {
+public enum GenericRecord: Codable, Hashable, Sendable {
 	private enum CodingKeys: String, CodingKey {
 		case type = "$type"
 	}
 	
 	indirect case post(Bsky.Feed.Post)
+	case feedLike(Bsky.Feed.Like)
 	indirect case embedRecord(Bsky.Embed.Record)
 	indirect case embedRecordView(Bsky.Embed.Record.View)
 	indirect case embedRecordViewRecord(Bsky.Embed.Record.ViewRecord)
@@ -53,6 +54,19 @@ public enum GenericRecord: Decodable, Hashable, Sendable {
 		default:
 			print("unhandled record type: \(value)")
 			self = .unhandled(value)
+		}
+	}
+	
+	public func encode(to encoder: any Encoder) throws {
+		var container = encoder.container(keyedBy: CodingKeys.self)
+
+		switch self {
+		case let .feedLike(like):
+			try container.encode(Bsky.NSID.feedLike.rawValue, forKey: .type)
+			
+			try like.encode(to: encoder)
+		default:
+			print("unhandled record type: \(self)")
 		}
 	}
 }

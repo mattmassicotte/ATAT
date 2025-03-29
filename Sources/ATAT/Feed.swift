@@ -53,3 +53,15 @@ extension Bsky.Feed {
 		public let feed: [Bsky.Feed.FeedViewPost]
 	}
 }
+
+extension Bsky.Feed {
+	public struct Like: Codable, Hashable, Sendable {
+		public let createdAt: Date
+		public let subject: Bsky.Repo.StrongRef
+		
+		public init(createdAt: Date, subject: Bsky.Repo.StrongRef) {
+			self.createdAt = createdAt
+			self.subject = subject
+		}
+	}
+}
