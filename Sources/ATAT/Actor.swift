@@ -23,5 +23,21 @@ extension Bsky.Actor {
 		public var avatarURL: URL? {
 			avatar.flatMap { URL(string: $0) }
 		}
+
+		public init(
+			did: ATProtoDID,
+			handle: String,
+			displayName: String? = nil,
+			avatar: String? = nil,
+			createdAt: Date,
+			viewer: ViewerState? = nil
+		) {
+			self.did = did
+			self.handle = handle
+			self.displayName = displayName
+			self.avatar = avatar
+			self.createdAt = createdAt
+			self.viewer = viewer
+		}
 	}
 }
