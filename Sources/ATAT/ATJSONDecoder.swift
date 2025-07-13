@@ -24,17 +24,25 @@ public struct ATJSONDecoder: Sendable {
 		let container = try decoder.singleValueContainer()
 		let string = try container.decode(String.self)
 		
+		if let date = decodeDate(string) {
+			return date
+		}
+
+		throw DecodingError.dataCorrupted(.init(codingPath: decoder.codingPath, debugDescription: "Undecodable date \(string)"))
+	}
+
+	public func decodeDate(_ string: String) -> Date? {
 		if let date = iso8061DecimalDecoder.date(from: string) {
 			return date
 		}
-		
+
 		if let date = iso8061OffsetFormatter.date(from: string) {
 			return date
 		}
-		
-		throw DecodingError.dataCorrupted(.init(codingPath: decoder.codingPath, debugDescription: "Undecodable date \(string)"))
+
+		return nil
 	}
-	
+
 	public func decode<T>(_ type: T.Type, from data: Data) throws -> T where T : Decodable {
 		try wrappedDecoder.decode(type, from: data)
 	}
