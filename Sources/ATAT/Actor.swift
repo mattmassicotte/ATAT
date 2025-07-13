@@ -1,7 +1,7 @@
 import Foundation
 
 extension Bsky.Actor {
-	public struct ViewerState: Decodable, Hashable, Sendable {
+	public struct ViewerState: Codable, Hashable, Sendable {
 		public let repost: ATProtoURI?
 		public let like: ATProtoURI?
 		public let muted: Bool?
@@ -12,7 +12,7 @@ extension Bsky.Actor {
 		public let pinned: Bool?
 	}
 	
-	public struct ProfileViewBasic: Decodable, Hashable, Sendable {
+	public struct ProfileViewBasic: Codable, Hashable, Sendable {
 		public let did: ATProtoDID
 		public let handle: String
 		public let displayName: String?
