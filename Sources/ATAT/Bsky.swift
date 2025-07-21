@@ -17,7 +17,9 @@ public struct Bsky {
 	}
 	
 	public enum NSID: String, Codable, Hashable, Sendable {
-		case feedLike = "app.bsky.feed.like"
+		case feedLike 		= "app.bsky.feed.like"
+		case feedPost 		= "app.bsky.feed.post"
+		case feedTimeline 	= "app.bsky.feed.getTimeline"
 	}
 }
 
