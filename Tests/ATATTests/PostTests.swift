@@ -238,7 +238,7 @@ extension PostTests {
 			),
 			reply: Bsky.Feed.Post.ReplyReference(
 				parent: Bsky.Repo.StrongRef(cid: "1", uri: "2"),
-				root: Bsky.Repo.StrongRef(cid: "3", uri: "4"),
+				root: Bsky.Repo.StrongRef(cid: "3", uri: "4")
 			)
 		)
 
