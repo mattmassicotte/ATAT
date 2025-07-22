@@ -83,6 +83,10 @@ struct PostTests {
 		let post = try ATJSONDecoder().decode(Bsky.Feed.PostView.self, from: Data(json.utf8))
 		
 		#expect(post.author.handle == "xxiainxx.bsky.social")
+
+		guard case let .post(postRecord) = post.record else { fatalError() }
+
+		#expect(postRecord.reply?.root.cid == "bafyreibgkzva4fazy6hjay44zurrkvowm2y7oj3fvoolcnzlwvkbzjna6q")
 	}
 	
 	@Test func postWithImagesEmbed() throws {
@@ -231,6 +235,10 @@ extension PostTests {
 				Bsky.Embed.Record(
 					record: Bsky.Embed.Record.RecordField(uri: "abc", cid: "def")
 				)
+			),
+			reply: Bsky.Feed.Post.ReplyReference(
+				parent: Bsky.Repo.StrongRef(cid: "1", uri: "2"),
+				root: Bsky.Repo.StrongRef(cid: "3", uri: "4"),
 			)
 		)
 

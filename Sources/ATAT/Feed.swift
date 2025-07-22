@@ -17,21 +17,34 @@ extension Bsky.Feed {
 
 extension Bsky.Feed {
 	public struct Post: Codable, Hashable, Sendable {
+		public struct ReplyReference: Codable, Hashable, Sendable {
+			public let parent: Bsky.Repo.StrongRef
+			public let root: Bsky.Repo.StrongRef
+
+			public init(parent: Bsky.Repo.StrongRef, root: Bsky.Repo.StrongRef) {
+				self.parent = parent
+				self.root = root
+			}
+		}
+
 		public let createdAt: Date
 		public let langs: [String]?
 		public let text: String
 		public let embed: GenericRecord?
+		public let reply: ReplyReference?
 
 		public init(
 			createdAt: Date,
 			langs: [String]?,
 			text: String,
-			embed: GenericRecord?
+			embed: GenericRecord?,
+			reply: ReplyReference? = nil
 		) {
 			self.createdAt = createdAt
 			self.langs = langs
 			self.text = text
 			self.embed = embed
+			self.reply = reply
 		}
 	}
 }
