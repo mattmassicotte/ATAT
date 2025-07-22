@@ -5,7 +5,7 @@ public struct Bsky {
 	public struct Embed {
 	}
 	
-	public struct Blob: Decodable, Hashable, Sendable {
+	public struct Blob: Codable, Hashable, Sendable {
 		public let mimeType: String
 		public let size: Int
 	}

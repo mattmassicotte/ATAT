@@ -1,8 +1,8 @@
 import Foundation
 
 extension Bsky.Embed {
-	public struct Record: Decodable, Hashable, Sendable {
-		public struct RecordField: Decodable, Hashable, Sendable {
+	public struct Record: Codable, Hashable, Sendable {
+		public struct RecordField: Codable, Hashable, Sendable {
 			public let uri: ATProtoURI
 			public let cid: ATProtoCID
 		}
@@ -12,7 +12,7 @@ extension Bsky.Embed {
 }
 
 extension Bsky.Embed.Record {
-	public struct View: Decodable, Hashable, Sendable {
+	public struct View: Codable, Hashable, Sendable {
 		public let record: GenericRecord
 	}
 }
@@ -33,7 +33,7 @@ extension Bsky.Embed.Record {
 }
 
 extension Bsky.Embed {
-	public struct RecordWithMedia: Decodable, Hashable, Sendable {
+	public struct RecordWithMedia: Codable, Hashable, Sendable {
 		public let media: GenericRecord
 		public let record: GenericRecord
 	}
@@ -51,8 +51,8 @@ extension Bsky.Embed.RecordWithMedia {
 }
 
 extension Bsky.Embed {
-	public struct External: Decodable, Hashable, Sendable {
-		public struct ExternalField: Decodable, Hashable, Sendable {
+	public struct External: Codable, Hashable, Sendable {
+		public struct ExternalField: Codable, Hashable, Sendable {
 			public let description: String
 			public let title: String
 			public let uri: String
@@ -77,15 +77,15 @@ extension Bsky.Embed.External {
 }
 
 extension Bsky.Embed {
-	public struct AspectRatio: Decodable, Hashable, Sendable {
+	public struct AspectRatio: Codable, Hashable, Sendable {
 		public let height: Int
 		public let width: Int
 	}
 }
 
 extension Bsky.Embed {
-	public struct Images: Decodable, Hashable, Sendable {
-		public struct Image: Decodable, Hashable, Sendable {
+	public struct Images: Codable, Hashable, Sendable {
+		public struct Image: Codable, Hashable, Sendable {
 			public let alt: String
 			public let aspectRatio: AspectRatio?
 			public let image: Bsky.Blob
