@@ -16,11 +16,23 @@ extension Bsky.Feed {
 }
 
 extension Bsky.Feed {
-	public struct Post: Decodable, Hashable, Sendable {
+	public struct Post: Codable, Hashable, Sendable {
 		public let createdAt: Date
 		public let langs: [String]?
 		public let text: String
 		public let embed: GenericRecord?
+
+		public init(
+			createdAt: Date,
+			langs: [String]?,
+			text: String,
+			embed: GenericRecord?
+		) {
+			self.createdAt = createdAt
+			self.langs = langs
+			self.text = text
+			self.embed = embed
+		}
 	}
 }
 
@@ -36,7 +48,33 @@ extension Bsky.Feed {
 		public let likeCount: Int
 		public let quoteCount: Int
 		public let indexedAt: Date
-		public let viewer: Bsky.Actor.ViewerState
+		public let viewer: Bsky.Actor.ViewerState?
+
+		public init(
+			uri: ATProtoURI,
+			cid: ATProtoCID,
+			author: Bsky.Actor.ProfileViewBasic,
+			record: GenericRecord,
+			embed: GenericRecord?,
+			replyCount: Int,
+			repostCount: Int,
+			likeCount: Int,
+			quoteCount: Int,
+			indexedAt: Date,
+			viewer: Bsky.Actor.ViewerState?
+		) {
+			self.uri = uri
+			self.cid = cid
+			self.author = author
+			self.record = record
+			self.embed = embed
+			self.replyCount = replyCount
+			self.repostCount = repostCount
+			self.likeCount = likeCount
+			self.quoteCount = quoteCount
+			self.indexedAt = indexedAt
+			self.viewer = viewer
+		}
 	}
 }
 

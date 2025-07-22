@@ -220,3 +220,23 @@ struct PostTests {
 		#expect(embed.aspectRatio == nil)
 	}
 }
+
+extension PostTests {
+	@Test func encodePostWithEmbed() throws {
+		let post = Bsky.Feed.Post(
+			createdAt: Date(timeIntervalSince1970: 1753158093),
+			langs: nil,
+			text: "hello",
+			embed: .embedRecord(
+				Bsky.Embed.Record(
+					record: Bsky.Embed.Record.RecordField(uri: "abc", cid: "def")
+				)
+			)
+		)
+
+		let data = try ATJSONEncoder().encode(post)
+		let output = try ATJSONDecoder().decode(Bsky.Feed.Post.self, from: data)
+
+		#expect(post == output)
+	}
+}

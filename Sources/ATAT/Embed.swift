@@ -5,9 +5,18 @@ extension Bsky.Embed {
 		public struct RecordField: Codable, Hashable, Sendable {
 			public let uri: ATProtoURI
 			public let cid: ATProtoCID
+
+			public init(uri: ATProtoURI, cid: ATProtoCID) {
+				self.uri = uri
+				self.cid = cid
+			}
 		}
 		
 		public let record: RecordField
+
+		public init(record: RecordField) {
+			self.record = record
+		}
 	}
 }
 
