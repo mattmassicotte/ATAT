@@ -16,6 +16,24 @@ extension Bsky.Feed.PostView {
 		
 		return postRecord.createdAt
 	}
+
+	// Helper function to parse URI into components
+	func parseURI(_ uri: String) -> [String: String] {
+		let components = uri
+			.trimmingCharacters(in: .whitespacesAndNewlines)
+			.split(separator: "/", omittingEmptySubsequences: false)
+			.map { String($0) }
+
+		guard components.count >= 5 else {
+			return [:]
+		}
+
+		return [
+			"repo": components[2],
+			"collection": components[3],
+			"rkey": components[4]
+		]
+	}
 }
 
 extension Bsky.Feed.FeedViewPost {

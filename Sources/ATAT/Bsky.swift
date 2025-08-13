@@ -21,7 +21,6 @@ public struct Bsky {
 		case embedImages = "app.bsky.embed.images"
 		case embedRecord  = "app.bsky.embed.record"
 		case embedRecordWithMedia = "app.bsky.embed.recordWithMedia"
-
 		case feedLike 		= "app.bsky.feed.like"
 		case feedPost 		= "app.bsky.feed.post"
 		case feedTimeline 	= "app.bsky.feed.getTimeline"
