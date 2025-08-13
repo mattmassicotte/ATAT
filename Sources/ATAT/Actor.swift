@@ -10,6 +10,26 @@ extension Bsky.Actor {
 		public let replyDisabled: Bool?
 		public let embeddingDisabled: Bool?
 		public let pinned: Bool?
+
+		public init(
+			repost: ATProtoURI?,
+			like: ATProtoURI?,
+			muted: Bool?,
+			blockedBy: Bool?,
+			threadMuted: Bool?,
+			replyDisabled: Bool?,
+			embeddingDisabled: Bool?,
+			pinned: Bool?
+		) {
+			self.repost = repost
+			self.like = like
+			self.muted = muted
+			self.blockedBy = blockedBy
+			self.threadMuted = threadMuted
+			self.replyDisabled = replyDisabled
+			self.embeddingDisabled = embeddingDisabled
+			self.pinned = pinned
+		}
 	}
 	
 	public struct ProfileViewBasic: Codable, Hashable, Sendable {

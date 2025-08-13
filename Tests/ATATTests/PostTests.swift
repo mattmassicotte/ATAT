@@ -83,6 +83,10 @@ struct PostTests {
 		let post = try ATJSONDecoder().decode(Bsky.Feed.PostView.self, from: Data(json.utf8))
 		
 		#expect(post.author.handle == "xxiainxx.bsky.social")
+
+		guard case let .post(postRecord) = post.record else { fatalError() }
+
+		#expect(postRecord.reply?.root.cid == "bafyreibgkzva4fazy6hjay44zurrkvowm2y7oj3fvoolcnzlwvkbzjna6q")
 	}
 	
 	@Test func postWithImagesEmbed() throws {
@@ -218,5 +222,29 @@ struct PostTests {
 		#expect(embed.playlist == "https://example-url.bsky.com/playlist.m3u8")
 		#expect(embed.thumbnail == "https://example-url.bsky.com/thumbnail.jpg")
 		#expect(embed.aspectRatio == nil)
+	}
+}
+
+extension PostTests {
+	@Test func encodePostWithEmbed() throws {
+		let post = Bsky.Feed.Post(
+			createdAt: Date(timeIntervalSince1970: 1753158093),
+			langs: nil,
+			text: "hello",
+			embed: .embedRecord(
+				Bsky.Embed.Record(
+					record: Bsky.Embed.Record.RecordField(uri: "abc", cid: "def")
+				)
+			),
+			reply: Bsky.Feed.Post.ReplyReference(
+				parent: Bsky.Repo.StrongRef(cid: "1", uri: "2"),
+				root: Bsky.Repo.StrongRef(cid: "3", uri: "4")
+			)
+		)
+
+		let data = try ATJSONEncoder().encode(post)
+		let output = try ATJSONDecoder().decode(Bsky.Feed.Post.self, from: data)
+
+		#expect(post == output)
 	}
 }

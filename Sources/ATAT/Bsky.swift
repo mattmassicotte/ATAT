@@ -5,7 +5,7 @@ public struct Bsky {
 	public struct Embed {
 	}
 	
-	public struct Blob: Decodable, Hashable, Sendable {
+	public struct Blob: Codable, Hashable, Sendable {
 		public let mimeType: String
 		public let size: Int
 	}
@@ -17,6 +17,10 @@ public struct Bsky {
 	}
 	
 	public enum NSID: String, Codable, Hashable, Sendable {
+		case embedExternal = "app.bsky.embed.external"
+		case embedImages = "app.bsky.embed.images"
+		case embedRecord  = "app.bsky.embed.record"
+		case embedRecordWithMedia = "app.bsky.embed.recordWithMedia"
 		case feedLike 		= "app.bsky.feed.like"
 		case feedPost 		= "app.bsky.feed.post"
 		case feedTimeline 	= "app.bsky.feed.getTimeline"
