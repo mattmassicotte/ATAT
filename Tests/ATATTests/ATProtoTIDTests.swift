@@ -20,8 +20,6 @@ struct ATProtoTIDTests {
 		#expect(tid.clockIdentifier == 0)
 		#expect(tid.timestamp == expected)
 		#expect(tid.date == Date.init(microsecondsSince1970: expected))
-
-
 	}
 
 	@Test
