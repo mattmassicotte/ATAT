@@ -32,3 +32,18 @@ extension App.Bsky.Actor.Defs {
 		}
 	}
 }
+
+extension App.Bsky.Actor.Defs {
+	public struct ProfileViewDetailed: Codable, Hashable, Sendable {
+		public let did: ATProtoDID
+		public let handle: String
+		public let displayName: String?
+		public let description: String?
+		public let avatar: String?
+		public let createdAt: Date
+
+		public var avatarURL: URL? {
+			avatar.flatMap { URL(string: $0) }
+		}
+	}
+}
