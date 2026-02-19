@@ -53,11 +53,11 @@ let json = """
 {"$type":"app.bsky.embed.record#view","record":{"uri":"at://did:plc:g3cybquvoxmxto4lhtc2mdma/app.bsky.graph.starterpack/3l7edfblvuk2w","cid":"bafyreifp3ymohe47fa472dziy2yoss6xs7tf34rsnyhlockxcepj26knxu","record":{"$type":"app.bsky.graph.starterpack","createdAt":"2024-10-25T19:43:48.475Z","description":"News, science, essays, reviews, podcasts and radio, from publications that aren't owned and controlled by billionaires","feeds":[],"list":"at://did:plc:g3cybquvoxmxto4lhtc2mdma/app.bsky.graph.list/3l7edfbgyl724","name":"Independent, Worker-Owned and Reader-Funded Media","updatedAt":"2025-10-18T14:32:10.664Z"},"creator":{"did":"did:plc:g3cybquvoxmxto4lhtc2mdma","handle":"laminda.bsky.social","displayName":"Mindy Weisberger","avatar":"https://cdn.bsky.app/img/avatar/plain/did:plc:g3cybquvoxmxto4lhtc2mdma/bafkreighfqas3ex3widzog3u5aiaugzd6ch4yqciszn3agr3gk2nnmzpwm@jpeg","associated":{"chat":{"allowIncoming":"following"},"activitySubscription":{"allowSubscriptions":"followers"}},"viewer":{"muted":false,"blockedBy":false},"labels":[{"src":"did:plc:g3cybquvoxmxto4lhtc2mdma","uri":"at://did:plc:g3cybquvoxmxto4lhtc2mdma/app.bsky.actor.profile/self","cid":"bafyreiczilty4uqxgm7q4kyrqfoer7eebqejregq637mnjdbsmdvippidi","val":"!no-unauthenticated","cts":"1970-01-01T00:00:00.000Z"}],"createdAt":"2023-05-11T15:19:35.242Z"},"joinedAllTimeCount":109,"joinedWeekCount":0,"labels":[],"indexedAt":"2025-10-18T14:32:10.991Z","$type":"app.bsky.graph.defs#starterPackViewBasic"}}   
 """
 
-		let record = try ATJSONDecoder().decode(Bsky.Embed.Record.self, from: Data(json.utf8))
+		let record = try ATJSONDecoder().decode(App.Bsky.Embed.Record.self, from: Data(json.utf8))
 
 		guard case let .view(view) = record else { Issue.record(); return }
 
-		guard case let .bskyGraphDefsStarterPackViewBasic(starterPackView) = view.record else { Issue.record(); return }
+		guard case let .starterBackViewBasic(starterPackView) = view.record else { Issue.record(); return }
 
 		#expect(starterPackView.cid == "bafyreifp3ymohe47fa472dziy2yoss6xs7tf34rsnyhlockxcepj26knxu")
 	}

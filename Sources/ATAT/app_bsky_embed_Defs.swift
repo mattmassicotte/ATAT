@@ -77,7 +77,7 @@ extension App.Bsky.Embed.Record {
 		case generatorView
 		case listView
 		case labelerView
-		case starterBackViewBasic
+		case starterBackViewBasic(App.Bsky.Graph.Defs.StarterPackViewBasic)
 		case unhandled(String)
 
 		private enum CodingKeys: String, CodingKey {
@@ -93,6 +93,8 @@ extension App.Bsky.Embed.Record {
 				self = .viewRecord(try App.Bsky.Embed.Record.ViewRecord(from: decoder))
 			case App.Bsky.Embed.Record.ViewBlocked.nsid:
 				self = .viewBlocked(try App.Bsky.Embed.Record.ViewBlocked(from: decoder))
+			case App.Bsky.Graph.Defs.StarterPackViewBasic.nsid:
+				self = .starterBackViewBasic(try App.Bsky.Graph.Defs.StarterPackViewBasic(from: decoder))
 			default:
 				print("BSKY unhandled nsid:", nsid, decoder.codingPath)
 				self = .unhandled(nsid)
