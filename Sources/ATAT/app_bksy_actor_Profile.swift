@@ -2,6 +2,8 @@ import Foundation
 
 extension App.Bsky.Actor {
 	public struct Profile: Codable, Hashable, Sendable {
+		public static let nsid = "app.bsky.actor.profile"
+
 		public let createdAt: Date?
 		public let description: String?
 		public let displayName: String?
