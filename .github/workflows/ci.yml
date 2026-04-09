@@ -48,6 +48,11 @@ jobs:
           - 6.1
           - 6.2
           - latest
+        traits:
+          - ""
+          - "CIDCoding"
+          - "SwiftCrypto"
+          - "CIDCoding,SwiftCrypto"
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -56,4 +61,4 @@ jobs:
         with:
           toolchain: ${{ matrix.swift-version }}
       - name: Test
-        run: swift test
+        run: swift test --traits ${{ matrix.traits }}

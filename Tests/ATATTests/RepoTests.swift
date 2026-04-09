@@ -10,12 +10,18 @@ struct RepoTests {
 			createdAt: Date.now
 		)
 
+#if CIDDecoding
+		let cid = try ATProtoCID(data: Data("mycid".utf8))
+#else
+		let cid = try ATProtoCID("mycid")
+#endif
+
 		let output = Com.ATProto.Repo.ListRecords.Output(
 			cursor: "mycursor",
 			records: [
 				.init(
 					uri: "at://myuri",
-					cid: "mycid",
+					cid: cid,
 					value: .profile(profile)
 				)
 			]

@@ -164,7 +164,7 @@ struct PostTests {
 
 		guard case let .viewRecord(viewRecord) = mediaView.record.record else { Issue.record(); return }
 
-		#expect(viewRecord.cid == "bafyreibna5ivhju5fzk32x3hbkzbihut5vrazyn2kisi6q7yegtyxamqvi")
+		try #expect(viewRecord.cid == ATProtoCID("bafyreibna5ivhju5fzk32x3hbkzbihut5vrazyn2kisi6q7yegtyxamqvi"))
 
 		#expect(postView.author.handle == "iamkonstantin.eu")
 	}

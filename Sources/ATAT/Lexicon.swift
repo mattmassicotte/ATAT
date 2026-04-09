@@ -1,6 +1,6 @@
 public typealias ATProtoDID = String
 public typealias ATProtoURI = String
-public typealias ATProtoCID = String
+//public typealias ATProtoCID = String
 
 public struct App {
 	public struct Bsky {

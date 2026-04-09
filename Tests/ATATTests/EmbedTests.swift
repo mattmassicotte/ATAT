@@ -13,7 +13,7 @@ let json = """
 
 		guard case let .viewRecord(viewRecord) = view.record else { Issue.record(); return }
 
-		#expect(viewRecord.cid == "bafyreibna5ivhju5fzk32x3hbkzbihut5vrazyn2kisi6q7yegtyxamqvi")
+		#expect(viewRecord.cid.baseEncodedString == "bafyreibna5ivhju5fzk32x3hbkzbihut5vrazyn2kisi6q7yegtyxamqvi")
 
 		#expect(viewRecord.author.handle == "bpavuk.bsky.social")
 		#expect(viewRecord.quoteCount == 1)
@@ -28,7 +28,7 @@ let json = """
 
 		guard case let .main(record) = recordWithMedia.record else { fatalError() }
 
-		#expect(record.record.cid == "bafyreiebyz62prxim6cgt6u2jy2odrpoo6phuhuk23fzq7uomrj6wf3n3m")
+		#expect(record.record.cid.baseEncodedString == "bafyreiebyz62prxim6cgt6u2jy2odrpoo6phuhuk23fzq7uomrj6wf3n3m")
 
 		guard case let .images(.main(embedImages)) = recordWithMedia.media else { fatalError() }
 
@@ -44,7 +44,7 @@ let json = """
 
 		guard case let .main(record) = recordWithMedia.record else { fatalError() }
 
-		#expect(record.record.cid == "bafyreif2hzji4erumfu6himcwlmixmczi4iqusg6bc4s2u6iju44dgaglu")
+		#expect(record.record.cid.baseEncodedString == "bafyreif2hzji4erumfu6himcwlmixmczi4iqusg6bc4s2u6iju44dgaglu")
 	}
 
 	@Test
@@ -59,6 +59,6 @@ let json = """
 
 		guard case let .starterBackViewBasic(starterPackView) = view.record else { Issue.record(); return }
 
-		#expect(starterPackView.cid == "bafyreifp3ymohe47fa472dziy2yoss6xs7tf34rsnyhlockxcepj26knxu")
+		#expect(starterPackView.cid.baseEncodedString == "bafyreifp3ymohe47fa472dziy2yoss6xs7tf34rsnyhlockxcepj26knxu")
 	}
 }

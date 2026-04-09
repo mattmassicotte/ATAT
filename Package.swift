@@ -1,17 +1,55 @@
-// swift-tools-version: 6.0
+// swift-tools-version: 6.1
 
 import PackageDescription
 
 let package = Package(
 	name: "ATAT",
+	platforms: [
+		.macOS(.v10_15),
+		.macCatalyst(.v13),
+		.iOS(.v13),
+		.tvOS(.v13),
+		.watchOS(.v6),
+		.visionOS(.v1),
+	],
 	products: [
 		.library(name: "ATAT", targets: ["ATAT"]),
 	],
+	traits: [
+		.trait(
+			name: "CIDDecoding",
+			description: "Enables full CID encoding and decoding"
+		),
+		.trait(
+			name: "SwiftCrypto",
+			description: "Use swift-crypto"
+		),
+		.default(enabledTraits: []),
+	],
+	dependencies: [
+		.package(
+			url: "https://github.com/swift-libp2p/swift-bases",
+			from: "0.2.0"
+		),
+		.package(
+			url: "https://github.com/apple/swift-crypto.git",
+			"1.0.0" ..< "4.0.0"
+		),
+	],
 	targets: [
-		.target(name: "ATAT"),
+		.target(
+			name: "ATAT",
+			dependencies: [
+				.product(name: "Base32", package: "swift-bases", condition: .when(traits: ["CIDDecoding"])),
+				.product(name: "Crypto", package: "swift-crypto", condition: .when(traits: ["SwiftCrypto"])),
+			]
+		),
 		.testTarget(
 			name: "ATATTests",
-			dependencies: ["ATAT"]
+			dependencies: [
+				"ATAT",
+				.product(name: "BaseX", package: "swift-bases", condition: .when(traits: ["CIDDecoding"])),
+			]
 		),
 		.target(name: "Lexicon"),
 		.testTarget(
