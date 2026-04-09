@@ -52,8 +52,6 @@ jobs:
           - latest
         traits:
           - ""
-          - "--traits CIDCoding"
-          - "--traits SwiftCrypto"
           - "--traits CIDCoding,SwiftCrypto"
     steps:
       - name: Checkout
