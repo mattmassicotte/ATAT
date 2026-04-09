@@ -23,16 +23,16 @@ jobs:
     timeout-minutes: 30
     runs-on: macos-26
     env:
-      DEVELOPER_DIR: /Applications/Xcode_26.2.app
+      DEVELOPER_DIR: /Applications/Xcode_26.4.app
     strategy:
       matrix:
         destination:
           - "platform=macOS"
           - "platform=macOS,variant=Mac Catalyst"
-          - "generic/platform=iOS"
-          - "generic/platform=tvOS"
-          - "generic/platform=watchOS"
-          - "generic/platform=xrOS"
+          - "platform=iOS Simulator,name=iPhone 16e"
+          - "platform=tvOS Simulator,name=Apple TV"
+          - "platform=watchOS Simulator,name=Apple Watch Series 11 (42mm)"
+          - "platform=visionOS Simulator,name=Apple Vision Pro"
     steps:
       - uses: actions/checkout@v4
       - name: Test platform ${{ matrix.destination }}
@@ -50,9 +50,9 @@ jobs:
           - latest
         traits:
           - ""
-          - "CIDCoding"
-          - "SwiftCrypto"
-          - "CIDCoding,SwiftCrypto"
+          - "--traits CIDCoding"
+          - "--traits SwiftCrypto"
+          - "--traits CIDCoding,SwiftCrypto"
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -61,4 +61,4 @@ jobs:
         with:
           toolchain: ${{ matrix.swift-version }}
       - name: Test
-        run: swift test --traits ${{ matrix.traits }}
+        run: swift test ${{ matrix.traits }}
