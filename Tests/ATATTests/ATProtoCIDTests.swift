@@ -2,7 +2,7 @@ import Testing
 import Foundation
 
 import ATAT
-#if CIDDecoding
+#if CIDCoding
 import BaseX
 
 struct ATProtoCIDTests {

@@ -10,7 +10,7 @@ struct RepoTests {
 			createdAt: Date.now
 		)
 
-#if CIDDecoding
+#if CIDCoding
 		let cid = try ATProtoCID(data: Data("mycid".utf8))
 #else
 		let cid = try ATProtoCID("mycid")

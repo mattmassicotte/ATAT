@@ -17,7 +17,7 @@ let package = Package(
 	],
 	traits: [
 		.trait(
-			name: "CIDDecoding",
+			name: "CIDCoding",
 			description: "Enables full CID encoding and decoding"
 		),
 		.trait(
@@ -40,7 +40,7 @@ let package = Package(
 		.target(
 			name: "ATAT",
 			dependencies: [
-				.product(name: "Base32", package: "swift-bases", condition: .when(traits: ["CIDDecoding"])),
+				.product(name: "Base32", package: "swift-bases", condition: .when(traits: ["CIDCoding"])),
 				.product(name: "Crypto", package: "swift-crypto", condition: .when(traits: ["SwiftCrypto"])),
 			]
 		),
@@ -48,7 +48,7 @@ let package = Package(
 			name: "ATATTests",
 			dependencies: [
 				"ATAT",
-				.product(name: "BaseX", package: "swift-bases", condition: .when(traits: ["CIDDecoding"])),
+				.product(name: "BaseX", package: "swift-bases", condition: .when(traits: ["CIDCoding"])),
 			]
 		),
 		.target(name: "Lexicon"),

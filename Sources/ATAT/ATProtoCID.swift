@@ -1,6 +1,6 @@
 import Foundation
 
-#if CIDDecoding
+#if CIDCoding
 import Base32
 #endif
 
@@ -42,18 +42,18 @@ public enum CIDError: Error {
 ///
 /// https://dasl.ing/cid.html
 ///
-/// - Warning: The functionality of this type is affeted by the `CIDDecoding` and `SwiftCrypto` traits. Depends on your needs, you many require one or both.
+/// - Warning: The functionality of this type is affeted by the `CIDCoding` and `SwiftCrypto` traits. Depends on your needs, you many require one or both.
 public struct ATProtoCID: Hashable, Sendable {
 	public let version: Int = 1
 	public let base: Multibase
 	public let codec: Multicodec
 	public let multihash: Multihash
 	public let digest: Data
-#if !CIDDecoding
+#if !CIDCoding
 	private let codedString: String
 #endif
 
-#if CIDDecoding
+#if CIDCoding
 	public init(
 		base: Multibase = .base32,
 		codec: Multicodec = .DAGCBOR,
@@ -159,7 +159,7 @@ public struct ATProtoCID: Hashable, Sendable {
 	/// This function does no decoding or validation and assumes a well-formed input. However, it
 	/// does still throw to attempt to maintain the API shape of the validating version.
 	///
-	/// - Warning: Package trait `CIDDecoding` is needed for full decoding of the input.
+	/// - Warning: Package trait `CIDCoding` is needed for full decoding of the input.
 	public init(_ string: String) throws {
 		self.base = .base32
 		self.codec = .DAGCBOR
