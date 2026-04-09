@@ -7,7 +7,7 @@ struct RepoTests {
 		let profile = App.Bsky.Actor.Profile(
 			displayName: "Massimo Pacoli",
 			description: "Renounded Egyptologist",
-			createdAt: Date.now
+			createdAt: Date()
 		)
 
 #if CIDCoding
